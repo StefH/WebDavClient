@@ -1,0 +1,49 @@
+{
+    "version": "1.0.5.0",
+    "title": "WebDav.Client",
+    "description": "An easy-to-use async WebDAV client for .NET",
+    "authors": [ "Sergey Kazantsev", "Stef Heyenrath" ],
+
+    "packOptions": {
+        "summary": "An easy-to-use async WebDAV client for .NET",
+        "tags": [ "webdav", "client", "NETStandard", ".NET" ],
+        "owners": [ "Sergey Kazantsev" ],
+        "repository": {
+            "type": "git",
+            "url": "https://github.com/skazantsev/WebDavClient"
+        },
+        "projectUrl": "https://github.com/skazantsev/WebDavClient",
+        "licenseUrl": "https://raw.githubusercontent.com/skazantsev/WebDavClient/master/LICENSE.txt",
+        "releaseNotes": "Added NETStandard 1.3"
+    },
+
+    "dependencies": {
+        "JetBrains.Annotations": {
+            "version": "10.2.1",
+            "type": "build"
+        }
+    },
+
+    "frameworks": {
+        "net45": {
+            "frameworkAssemblies": {
+                "System.Net.Http": { "type": "build" },
+                "System.Xml": { "type": "build" },
+                "System.Xml.Linq": { "type": "build" }
+            }
+        },
+        "netstandard1.3": {
+            "buildOptions": { "define": [ "NETSTANDARD" ] },
+            "dependencies": {
+                "System.Collections": "4.3.0",
+                "System.Linq": "4.3.0",
+                "System.Linq.Queryable": "4.3.0",
+                "System.Runtime": "4.3.0",
+                "System.Runtime.Extensions": "4.3.0",
+                "System.Text.RegularExpressions": "4.3.0",
+                "System.Net.Http": "4.3.0",
+                "System.Xml.XDocument": "4.3.0"
+            }
+        }
+    }
+}
