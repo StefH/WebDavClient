@@ -750,8 +750,14 @@ namespace WebDav
 
         private static async Task<string> ReadContentAsString(HttpContent content)
         {
-            var data = await content.ReadAsByteArrayAsync();
-            return GetResponseEncoding(content, Encoding.UTF8).GetString(data);
+            byte[] bytes = await content.ReadAsByteArrayAsync();
+            Encoding encoding = GetResponseEncoding(content, Encoding.UTF8);
+
+#if NETSTANDARD || PORTABLE
+            return encoding.GetString(bytes, 0, bytes.Length);
+#else
+            return encoding.GetString(bytes);
+#endif
         }
 
         private Uri GetAbsoluteUri(Uri uri)
@@ -770,7 +776,7 @@ namespace WebDav
             return new Uri(_dispatcher.BaseAddress, uri);
         }
 
-        #region IDisposable
+#region IDisposable
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting managed/unmanaged resources.
@@ -793,6 +799,6 @@ namespace WebDav
             }
         }
 
-        #endregion
+#endregion
     }
 }
